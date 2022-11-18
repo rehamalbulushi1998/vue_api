@@ -1,6 +1,7 @@
 <script setup>
 	import { ref, onErrorCaptured } from 'vue'
-	const response = ref({})
+	const responses = ref({})
+  
 
   // adding delay
   await new Promise(resolve => {
@@ -13,32 +14,30 @@
     // error processing
   })
 
-  const res = await fetch('https://api.quotable.io/random')
+  const res = await fetch('http://universities.hipolabs.com/search?country=United+States')
   console.log(res)
   if (!res.ok) {
     throw new Error()
   }
-  response.value = (await res.json())
+  responses.value = (await res.json())
 
 </script>
 
 <template >
+    <h1> Universities Lists</h1>
 
-     <div class="card">
-    <h2 >" {{ response.content}} "</h2>
-    <br/>
-    <h3> Author: {{ response.author}}</h3>
-     <br/>
-    <h3> Tags: {{ response.tags}}</h3>
+     <div class="card" v-for="response in responses" >
+    <h2 > {{ response.name }} </h2>
+    <h3> Country: {{ response.country }}</h3>
+    <h3> Web page link: {{ response.web_pages }}</h3>
   </div>
 
-   <button @click="reloadPage">refresh to get a random quota</button>
   
 </template>
 
 <style>
 
-h2 {
+h2, h1 {
    color: #fff;
 }
 h3 {
@@ -48,19 +47,10 @@ h3 {
     background-color: #7b356d;
     border-radius: .2rem;
     box-shadow: rgb(150, 150, 150, 150) 0px 1px 3px;
-    width: 450px;
+    width: 850px;
     margin: 10px;
     padding: 10px;
   }
 
  
 </style>
-<script>
-export default {
-  methods: {
-    reloadPage() {
-      window.location.reload();
-    }
-  }
-}
-</script>
