@@ -14,7 +14,7 @@
     // error processing
   })
 
-  const res = await fetch('http://universities.hipolabs.com/search?country=United+States')
+  const res = await fetch('http://universities.hipolabs.com/search?country=Saudi+Arabia')
   console.log(res)
   if (!res.ok) {
     throw new Error()
