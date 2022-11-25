@@ -20,17 +20,26 @@
     throw new Error()
   }
   responses.value = (await res.json())
-
 </script>
 
 <template >
     <h1> Universities Lists</h1>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="scrollmenu">
 
-     <div class="card" v-for="response in responses" >
+     <div v-for="response in responses" >
+      
     <h2 > {{ response.name }} </h2>
-    <h3> Country: {{ response.country }}</h3>
-    <h3> Web page link: {{ response.web_pages }}</h3>
+    <br/>
+     <router-link   :to="{ name: 'Unidetailes', params: { name: response.name , country: response.country } }">
+  <button type="button" class="block">Show</button>
+  </router-link>
   </div>
+    </div>
 
   
 </template>
@@ -38,19 +47,44 @@
 <style>
 
 h2, h1 {
-   color: #fff;
+    color: #cab7b3;
 }
 h3 {
-   color: #fff;
+    color: #cab7b3;
 }
-  .card {
-    background-color: #7b356d;
-    border-radius: .2rem;
-    box-shadow: rgb(150, 150, 150, 150) 0px 1px 3px;
-    width: 850px;
-    margin: 10px;
-    padding: 10px;
-  }
+
+
+div.scrollmenu {
+
+  background-color: #8f6b5f;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu div {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+  border-radius: .2rem;
+  box-shadow: rgb(150, 150, 150, 150) 0px 1px 3px;
+}
+
+div.scrollmenu div:hover {
+  background-color: #e3deda;
+}
+.block {
+  color: #cab7b3;
+  display: block;
+  border: none;
+  background-color: #5e4d47;
+  padding: 10px 15px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+}
+
 
  
 </style>

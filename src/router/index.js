@@ -8,11 +8,18 @@ const BhrUni = () => import('@/views/BhUniPage.vue');
 const Suspense = () => import('@/views/SuspensePage.vue');
 const KwUni = () => import('@/views/KwUniPage.vue');
 const QtrUni = () => import('@/views/QtrUniPage.vue');
-const Unidetailes = () => import('@/views/Unidetailes.vue');
+const UniPage = () => import('@/views/UniPage.vue');
+const Home = () => import('@/views/HomePage.vue');
 const NotFound = () => import('@/views/NotFound.vue');
 
 
+
 const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Home,
+  },
   {
     path: '/Oman-Universities',
     name: 'OmUni',
@@ -49,9 +56,10 @@ const routes = [
     component: BhrUni,
   },
   {
-    path: '/Uni-detailes',
-    name: 'Unidetailes',
-    component: Unidetailes,
+    path: '/University/:name/:country',
+    props: true,
+    name:'Unidetailes',
+    component: UniPage,
   },
   { path: '/:pathMatch(.*)*', name: 'notFound', component: NotFound },
 ];
